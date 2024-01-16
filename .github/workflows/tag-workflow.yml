@@ -3,7 +3,7 @@ name : Tag Workflow
 on :
   push:
     tags:
-      - 'tag'
+      - 'Release1'
 
 env:
   VAR1: ${{ vars.VAR1 }}
