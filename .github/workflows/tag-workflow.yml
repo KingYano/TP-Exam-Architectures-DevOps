@@ -3,19 +3,30 @@ name : Tag Workflow
 on :
   push:
     tags:
-      - 'v*'
+      - 'tag'
 
+env:
+  var: ${{ vars.VAR1 }}
 
 jobs:
   job1:
     runs-on : ubuntu-latest
     steps:
       - name: Step 1
-        run: echo "Execution job 1"
+        run: |
+          echo "La valeur de la variable est ${{ vars.VAR1 }}"
 
-  job2:
-    needs: job1
-    runs-on : ubuntu-latest
-    steps:
-      - name: Step 2
-        run: echo "Execution job 2"
+  #jobs:
+  #  build:
+  #    runs-on: ubuntu-latest
+
+  #    steps:
+  #    - name: Checkout Repository
+  #      uses: actions/checkout@v2
+
+
+  #    - name: Set up Python 3.8
+  #      uses: actions/setup-python@v2
+  #      with:
+  #       python-version: 3.8
+
