@@ -3,14 +3,12 @@ name : Exo2 Workflow
 on:
   workflow_dispatch:
 
-
-
 jobs:
   job1:
     runs-on : ubuntu-latest
     if: ${{vars.A}} > 0 && ${{vars.B}} > 0
     steps:
-      - name: afficher les valeurs
+      - name: affichage des valeurs suivantes
         run: |
           echo "a = ${{vars.B}} et b = ${{vars.B}}"
 
