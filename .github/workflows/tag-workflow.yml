@@ -3,30 +3,23 @@ name : Tag Workflow
 on :
   push:
     tags:
-      - 'Release1'
-
-env:
-  VAR1: ${{ vars.VAR1 }}
+      - 'release*'
 
 jobs:
   job1:
     runs-on : ubuntu-latest
     steps:
-      - name: Step 1
+      - name: Test Model
+        env:
+          VAR: ${{ vars.VAR1 }}
         run: |
-          echo "La valeur de la variable est ${{ vars.VAR1 }}"
+          echo $VAR
 
-  #jobs:
-  #  build:
-  #    runs-on: ubuntu-latest
-
-  #    steps:
-  #    - name: Checkout Repository
-  #      uses: actions/checkout@v2
-
-
-  #    - name: Set up Python 3.8
-  #      uses: actions/setup-python@v2
-  #      with:
-  #       python-version: 3.8
-
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+      - name: failure
+        run: |
+          echo "le job à échoué !"
