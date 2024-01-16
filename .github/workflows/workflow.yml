@@ -1,4 +1,4 @@
-name : Tag Workflow
+name: Tag Workflow
 
 on:
   workflow_dispatch:
@@ -7,12 +7,11 @@ env:
   a: 2
   b: 3
 
-
 jobs:
   job1:
-    runs-on : ubuntu-latest
-    if: ${{ a > 0 && b > 0}}
+    runs-on: ubuntu-latest
+    if: ${{ env.a > 0 && env.b > 0 }}
     steps:
-      - name: afficher les valeurs
+      - name: Afficher les valeurs
         run: |
-          echo "a = ${{a}} et b = ${{b}}"
+          echo "a = ${{ env.a }} et b = ${{ env.b }}"
